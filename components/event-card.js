@@ -21,14 +21,11 @@ const styles = StyleSheet.create({
 	cardContainer: {
 		backgroundColor: '#183059',
 		padding: 15,
-		borderWidth: 1,
-		borderColor: 'white',
-		borderStyle: 'solid',
-		borderRadius: 10,
+		borderRadius: 5,
 		width: '85%',
 		marginTop: 20,
 
-		shadowOffset: { height: 300, width: 300 },
+		shadowOffset: { height: 3, width: 3 },
 		shadowOpacity: 0.2,
 		shadowRadius: 0
 	},
@@ -37,6 +34,6 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 	cardSmallText: {
-		color: 'grey'
+		color: 'lightgrey'
 	},
 });
