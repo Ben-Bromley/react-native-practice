@@ -1,14 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import Homepage from './components/home.jsx';
-// import Icon from 'react-native-vector-icons';
-
-import Login from './screens/login.js';
-import SignUp from './screens/signup.js';
-import HomeScreen from './screens/home.js';
+import LoginScreen from './screens/login.js';
+import SignUpScreen from './screens/signup.js';
+import Root from './screens/main/index.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,11 +12,11 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
-				{/* <Stack.Screen name="Login" component={Login} /> */}
-				{/* <Stack.Screen name="SignUp" component={Signup} /> */}
+				<Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+				<Stack.Screen name="Signup" component={SignUpScreen} options={{ title:"Sign Up" }}/>
 				<Stack.Screen
-					name="Home"
-					component={HomeScreen}
+					name="Root"
+					component={Root}
 					options={{
 						title: "Sport Share",
 						headerStyle: {
@@ -30,6 +26,7 @@ export default function App() {
 							color: 'white',
 							fontWeight: 'bold',
 						},
+						headerLeft: null,
 					}}
 				/>
 			</Stack.Navigator>
