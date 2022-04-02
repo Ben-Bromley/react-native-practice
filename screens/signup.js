@@ -16,9 +16,13 @@ export default function SignUp() {
 					<Text style={styles.title}>Sign Up</Text>
 				</View>
 				<View style={styles.formContainer}>
+					<Text style={styles.inputLabel}>Username:</Text>
 					<TextInput style={styles.textInput} placeholder="Username" />
+					<Text style={styles.inputLabel}>Email:</Text>
 					<TextInput style={styles.textInput} placeholder="Email" />
+					<Text style={styles.inputLabel}>Password:</Text>
 					<TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} />
+					<Text style={styles.inputLabel}>Confirm:</Text>
 					<TextInput style={styles.textInput} placeholder="Confirm Password" secureTextEntry={true} />
 					<Pressable style={styles.primaryButton}>
 						<Text style={styles.text}>Sign Up</Text>
@@ -31,22 +35,30 @@ export default function SignUp() {
 
 // ------------ Signup Styles ------------ //
 const styles = StyleSheet.create({
+	inputLabel: {
+		color: 'white',
+		fontSize: 18,
+		marginBottom: 5
+	},
     title: {
 		color: 'white',
-		fontSize: 35
+		fontSize: 35,
+		marginBottom: 20
 	},
 	signupContainer: {
 		minHeight: '100%',
 		minWidth: '100%',
-		backgroundColor: '#183059'
+		backgroundColor: '#222d42',
+		paddingTop:20,
 	},
 	signupSubContainer: {
-		maxHeight: '70%',
+		marginTop: 20,
+		maxHeight: '85%',
 		flex: 1,
 		justifyContent: 'space-evenly',
 		alignItems: 'center'
 	},
-	formContainer: { alignItems: 'center', },
+	formContainer: { alignItems: 'stretch', },
 	textInput: {
         fontSize: 18,
 		backgroundColor: 'white',

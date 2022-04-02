@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
     // ------- EventCard Styles -------- //
 	cardContainer: {
 		backgroundColor: '#183059',
-		padding: 15,
+		padding: 25,
 		borderRadius: 5,
-		width: '85%',
+		width: '100%',
 		marginTop: 20,
 
-		shadowOffset: { height: 3, width: 3 },
+		shadowOffset: { height: 5, width: 3 },
 		shadowOpacity: 0.2,
 		shadowRadius: 0
 	},
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 	cardSmallText: {
-		color: 'lightgrey'
+		color: 'lightgrey',
+        marginBottom: 5
 	},
 });
