@@ -1,5 +1,6 @@
 # sport-share-app
-```v0.0.2```
+
+![App Version](https://img.shields.io/badge/App%20Version-v0.3-2b56a1)
 
 Sports Share is an app designed to:
  - Bring communities together 
