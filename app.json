@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-practice",
-    "slug": "react-native-practice",
+    "name": "Sport Share",
+    "slug": "sport-share",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
