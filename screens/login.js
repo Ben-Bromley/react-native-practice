@@ -8,7 +8,7 @@ import {
     Pressable
 } from 'react-native';
 
-export default function Login() {
+export default function Login({ navigation }) {
     return (
         <SafeAreaView style={styles.loginContainer}>
             <View style={styles.loginSubContainer}>
@@ -37,7 +37,14 @@ export default function Login() {
                         <Text style={styles.text}>Sign In With Google</Text>
                     </Pressable>
                     <Text style={styles.text}>Don't Have an Account?</Text>
-                    <Text style={styles.linkText}>Sign Up Here</Text>
+                    <Text
+                        style={styles.linkText}
+                        onPress={() => navigation.navigate('Signup')}
+                    >Sign Up Here</Text>
+                    <Text
+                        style={styles.linkText}
+                        onPress={() => navigation.replace('Root')}
+                    >OR SKIP</Text>
                 </View>
             </View>
         </SafeAreaView>
@@ -46,6 +53,11 @@ export default function Login() {
 
 // ------------ Login Styles ------------ //
 const styles = StyleSheet.create({
+    inputLabel: {
+		color: 'white',
+		fontSize: 18,
+		marginBottom: 5
+	},
     title: {
         color: 'white',
         fontSize: 35
@@ -53,13 +65,15 @@ const styles = StyleSheet.create({
     loginContainer: {
         minHeight: '100%',
         minWidth: '100%',
-        backgroundColor: '#183059',
+        backgroundColor: '#222d42',
+        // backgroundColor: '#1a212e',
     },
     loginSubContainer: {
+        marginTop: 20,
         maxHeight: '90%',
-		flex: 1,
-		justifyContent: 'space-evenly',
-		alignItems: 'center'
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
     },
     loginTitleContainer: {
         minWidth: '100%',
