@@ -7,6 +7,7 @@ import {
     TextInput,
     Pressable
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Login({ navigation }) {
     return (
@@ -16,9 +17,9 @@ export default function Login({ navigation }) {
                     <Text style={styles.title}>Login</Text>
                 </View>
                 <View style={styles.formContainer}>
-                    <TextInput style={styles.textInput} placeholder="Username" />
+                    <TextInput style={styles.textInput} placeholder="Email" />
                     <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} />
-                    <Pressable style={styles.primaryButton}>
+                    <Pressable style={styles.primaryButton} onPress={() => navigation.replace('Root')}>
                         <Text style={styles.text}>Login</Text>
                     </Pressable>
                     <Text style={styles.linkText}>Forgotten Password?</Text>
@@ -29,23 +30,17 @@ export default function Login({ navigation }) {
                     <View style={styles.hr} />
                 </View>
                 <View style={styles.socialLoginContainer}>
-                    {/* Buttons */}
-                    <Pressable style={styles.facebookLogin}>
-                        <Text style={styles.text}>Sign In With Facebook</Text>
+                    <Pressable><Text style={styles.text}>
+                        <Icon name="logo-facebook" size={18} /> Sign In</Text>
                     </Pressable>
-                    <Pressable style={styles.googleLogin}>
-                        <Text style={styles.text}>Sign In With Google</Text>
+                    <Pressable><Text style={styles.text}>
+                        <Icon name="logo-google" size={18} /> Sign In</Text>
                     </Pressable>
-                    <Text style={styles.text}>Don't Have an Account?</Text>
-                    <Text
-                        style={styles.linkText}
-                        onPress={() => navigation.navigate('Signup')}
-                    >Sign Up Here</Text>
-                    <Text
-                        style={styles.linkText}
-                        onPress={() => navigation.replace('Root')}
-                    >OR SKIP</Text>
                 </View>
+                <Text style={styles.text}>Don't Have an Account?{' '}
+                    <Text style={styles.linkText} onPress={() => navigation.navigate('Signup')}
+                    >Sign Up Here</Text>
+                </Text>
             </View>
         </SafeAreaView>
     );
@@ -54,10 +49,10 @@ export default function Login({ navigation }) {
 // ------------ Login Styles ------------ //
 const styles = StyleSheet.create({
     inputLabel: {
-		color: 'white',
-		fontSize: 18,
-		marginBottom: 5
-	},
+        color: 'white',
+        fontSize: 18,
+        marginBottom: 5
+    },
     title: {
         color: 'white',
         fontSize: 35
@@ -113,21 +108,12 @@ const styles = StyleSheet.create({
         width: '38%',
         height: StyleSheet.hairlineWidth
     },
-    socialLoginContainer: { alignItems: 'center' },
-    facebookLogin: {
-        minWidth: '85%',
-        backgroundColor: '#366cc9',
+    socialLoginContainer: {
+        width: '50%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 15,
-        borderRadius: 5,
-        marginBottom: 15
+
     },
-    googleLogin: {
-        minWidth: '85%',
-        backgroundColor: '#1488dd',
-        alignItems: 'center',
-        padding: 15,
-        borderRadius: 5,
-        marginBottom: 15
-    }
 });
