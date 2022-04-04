@@ -1,40 +1,57 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
+import moment from 'moment';
 
-export default function EventCard() {
+export default function EventCard(props) {
+	let event = props.event || {};
+	let displayDate = moment(event.start).format("MMMM Do YYYY, h:mma");
 	return (
-		<View style={styles.cardContainer}>
-			<Text style={styles.cardBigText}>Tennis Session</Text>
-			<Text style={styles.cardSmallText}>hosted by John Smith</Text>
-			<Text style={styles.cardBigText}>12 Aug, 7pm-9pm</Text>
-			<Text style={styles.cardSmallText}>2/4 people booked in</Text>
-		</View>
+		<Pressable style={styles.cardContainer} onPress={()=>{alert(`View details for "${event.name}"`)}}>
+			<View>
+				<Text style={styles.textPrimary}>{event.name}</Text>
+				<Text style={styles.textSecondary}>{displayDate}</Text>
+			</View>
+			<View style={styles.eventCount}>
+				<Text style={styles.textSecondary}>
+					{event.current_capacity}/{event.total_capacity}
+				</Text>
+			</View>
+		</Pressable>
 	);
 }
 
 const styles = StyleSheet.create({
-    // ------- EventCard Styles -------- //
+	// ------- EventCard Styles -------- //
 	cardContainer: {
 		backgroundColor: '#183059',
-		padding: 25,
+		padding: 15,
 		borderRadius: 5,
 		width: '100%',
 		marginTop: 20,
-
-		shadowOffset: { height: 5, width: 3 },
+		shadowOffset: { height: 3, width: 3 },
 		shadowOpacity: 0.2,
-		shadowRadius: 0
+
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
-	cardBigText: {
+	textPrimary: {
 		color: 'white',
 		fontSize: 25
 	},
-	cardSmallText: {
-		color: 'lightgrey',
-        marginBottom: 5
+	textSecondary: {
+		color: 'lightgray',
 	},
+	eventCount: {
+		borderColor: 'gray',
+		borderWidth: 1,
+		padding: 10,
+		width: 45,
+		height: 45,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 25,
+	}
 });
