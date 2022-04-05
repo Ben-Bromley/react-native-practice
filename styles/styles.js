@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
 export default StyleSheet.create({
     screenContainer: {
         minHeight: '100%',
@@ -54,6 +53,20 @@ export default StyleSheet.create({
         color: "white",
         fontSize: 20,
         marginVertical: 10,
+    },
+    button: {
+        backgroundColor: "#183059",
+        padding: 10,
+        borderRadius: 5,
+        marginVertical: 20,
+        width: 110,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    buttonText: {
+        color: "white",
+        fontSize: 20,
+        fontWeight: "bold",
     }
-
 });
