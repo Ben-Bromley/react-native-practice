@@ -1,12 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 
 export default function EventCard(props) {
 	let event = props.event || {};
 	let displayDate = moment(event.start).format("MMMM Do YYYY, h:mma");
+	
+	const showEventDetails = () => {
+		props.setShowModal(true);
+		props.setSelectedEvent(event);
+	}
+
 	return (
-		<Pressable style={styles.cardContainer} onPress={()=>{alert(`View details for "${event.name}"`)}}>
+		<TouchableOpacity style={styles.cardContainer} 
+		onPress={()=>{showEventDetails()}}>
 			<View>
 				<Text style={styles.textPrimary}>{event.name}</Text>
 				<Text style={styles.textSecondary}>{displayDate}</Text>
@@ -16,7 +23,7 @@ export default function EventCard(props) {
 					{event.current_capacity}/{event.total_capacity}
 				</Text>
 			</View>
-		</Pressable>
+		</TouchableOpacity>
 	);
 }
 

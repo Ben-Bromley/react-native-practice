@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-native';
 
 import EventCard from '../../components/event-card';
+import EventModal from '../../components/event-modal';
 import Tag from '../../components/tag';
 
 import globalStyles from '../../styles/styles';
@@ -9,6 +10,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Home() {
 	const [events, setEvents] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+	const [selectedEvent, setSelectedEvent] = useState({});
 
 	useEffect(() => {
 		if (events.length === 0) {
@@ -32,14 +35,18 @@ export default function Home() {
 				</ScrollView>
 				<View>
 					{/* for each event in array, render a card: */}
-					{events.map(event => <EventCard event={event} key={event} />)}
+					{events.map(event =>
+						<EventCard event={event} key={event} setShowModal={setShowModal} setSelectedEvent={setSelectedEvent}/>
+					)}
 					{/* if no events, render message */}
 					{events.length === 0 && <Text style={styles.searchEmpty}>No events found</Text>}
 				</View>
 			</ScrollView>
-			<TouchableOpacity style={styles.addButton} onPress={()=>{alert('add new event')}}>
-				<Icon name="add" size={45} color="lightgray"/>
+			<TouchableOpacity style={styles.addButton} onPress={() => { console.log('add new event') }}>
+				<Icon name="add" size={45} color="lightgray" />
 			</TouchableOpacity>
+			{/* conditionally render modal element */}
+			{showModal && <EventModal event={selectedEvent} setShowModal={setShowModal} />}
 		</>
 	);
 }
