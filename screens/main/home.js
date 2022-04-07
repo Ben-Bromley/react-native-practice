@@ -1,26 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from "react";
+import {
+	StyleSheet,
+	ScrollView,
+	Text,
+	View,
+	TouchableOpacity,
+} from "react-native";
 
-import EventCard from '../../components/event-card';
-import EventModal from '../../components/event-modal';
-import Tag from '../../components/tag';
+import EventCard from "../../components/event-card";
+import EventModal from "../../components/event-modal";
+import Tag from "../../components/tag";
 
-import globalStyles from '../../styles/styles';
-import Icon from 'react-native-vector-icons/Ionicons';
+import globalStyles from "../../styles/styles";
+import Icon from "react-native-vector-icons/Ionicons";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
-export default function Home({navigation}) {
+export default function Home({ navigation, route }) {
+	const isFocused = useIsFocused();
+
 	const [events, setEvents] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [selectedEvent, setSelectedEvent] = useState({});
 
+	const fetchEvents = async () => {
+		console.log("fetching events", new Date());
+		fetch("http://192.168.1.158:3000/events/all")
+			.then((response) => response.json())
+			.then((data) => setEvents(data.data))
+			.catch((err) => console.log(err));
+	};
+
+	// serves as an "onload" event
 	useEffect(() => {
-		if (events.length === 0) {
-			fetch("http://192.168.1.158:3000/events/all")
-				.then(response => response.json())
-				.then(data => setEvents(data.data))
-				.catch(err => console.log(err));
+		if (isFocused && (events.length === 0 || (route.params && route.params.eventCreated))) {
+			console.log("effect fired");
+			fetchEvents();
 		}
-	}, []);
+	}, [isFocused]);
 
 	return (
 		<>
@@ -35,18 +51,37 @@ export default function Home({navigation}) {
 				</ScrollView>
 				<View>
 					{/* for each event in array, render a card: */}
-					{events.map(event =>
-						<EventCard event={event} key={event} setShowModal={setShowModal} setSelectedEvent={setSelectedEvent}/>
-					)}
+					{events.map((event) => (
+						<EventCard
+							event={event}
+							key={event.id}
+							setShowModal={setShowModal}
+							setSelectedEvent={setSelectedEvent}
+						/>
+					))}
 					{/* if no events, render message */}
-					{events.length === 0 && <Text style={styles.searchEmpty}>No events found</Text>}
+					{events.length === 0 && (
+						<Text style={styles.searchEmpty}>No events found</Text>
+					)}
 				</View>
 			</ScrollView>
-			<TouchableOpacity style={styles.addButton} onPress={() => { navigation.navigate("Create") }}>
-				<Icon style={{ marginLeft: 2.6,}} name="add" size={40} color="lightgray" />
+			<TouchableOpacity
+				style={styles.addButton}
+				onPress={() => {
+					navigation.navigate("Create");
+				}}
+			>
+				<Icon
+					style={{ marginLeft: 2.6 }}
+					name="add"
+					size={40}
+					color="lightgray"
+				/>
 			</TouchableOpacity>
 			{/* conditionally render modal element */}
-			{showModal && <EventModal event={selectedEvent} setShowModal={setShowModal} />}
+			{showModal && (
+				<EventModal event={selectedEvent} setShowModal={setShowModal} />
+			)}
 		</>
 	);
 }
@@ -55,19 +90,19 @@ const styles = StyleSheet.create({
 	// ------------- Main menu Styles ------------- //
 	searchEmpty: {
 		fontSize: 20,
-		color: 'lightgray',
-		textAlign: 'center',
+		color: "lightgray",
+		textAlign: "center",
 		marginTop: 20,
 	},
 	addButton: {
-		backgroundColor: '#183059',
-		position: 'absolute',
+		backgroundColor: "#183059",
+		position: "absolute",
 		padding: 8,
 		bottom: 25,
 		right: 25,
 		borderRadius: 50,
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });

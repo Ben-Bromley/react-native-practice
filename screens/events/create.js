@@ -76,7 +76,7 @@ export default function CreateEvent({ navigation }) {
 				// alert user if event was created successfully
 				if (data.status === 200 && data.message === "Success") {
 					Alert.alert("Success! 🎉", "Your event has been created");
-					navigation.navigate("Home");
+					navigation.navigate("Home", { eventCreated: true });
 				}
 			})
 			.catch((error) => {
