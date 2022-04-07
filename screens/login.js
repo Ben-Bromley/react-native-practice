@@ -4,6 +4,7 @@ import {
     Text,
     View,
     SafeAreaView,
+    KeyboardAvoidingView,
     TextInput,
     Pressable
 } from 'react-native';
@@ -11,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Login({ navigation }) {
     return (
-        <SafeAreaView style={styles.loginContainer}>
+        <KeyboardAvoidingView style={styles.loginContainer}>
             <View style={styles.loginSubContainer}>
                 <View style={styles.loginTitleContainer}>
                     <Text style={styles.title}>Login</Text>
@@ -39,10 +40,10 @@ export default function Login({ navigation }) {
                 </View>
                 <Text style={styles.text}>Don't Have an Account?{' '}
                     <Text style={styles.linkText} onPress={() => navigation.navigate('Signup')}
-                    >Sign Up Here</Text>
+                    >Sign Up</Text>
                 </Text>
             </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
     );
 }
 
