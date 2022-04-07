@@ -8,7 +8,7 @@ import Tag from '../../components/tag';
 import globalStyles from '../../styles/styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function Home() {
+export default function Home({navigation}) {
 	const [events, setEvents] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [selectedEvent, setSelectedEvent] = useState({});
@@ -42,8 +42,8 @@ export default function Home() {
 					{events.length === 0 && <Text style={styles.searchEmpty}>No events found</Text>}
 				</View>
 			</ScrollView>
-			<TouchableOpacity style={styles.addButton} onPress={() => { console.log('add new event') }}>
-				<Icon name="add" size={45} color="lightgray" />
+			<TouchableOpacity style={styles.addButton} onPress={() => { navigation.navigate("Create") }}>
+				<Icon style={{ marginLeft: 2.6,}} name="add" size={40} color="lightgray" />
 			</TouchableOpacity>
 			{/* conditionally render modal element */}
 			{showModal && <EventModal event={selectedEvent} setShowModal={setShowModal} />}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 	addButton: {
 		backgroundColor: '#183059',
 		position: 'absolute',
-		padding: 10,
+		padding: 8,
 		bottom: 25,
 		right: 25,
 		borderRadius: 50,
