@@ -7,7 +7,7 @@ import globalStyles from "../styles/styles";
 export default function EventModal({event, setShowModal}) {
   
   let displayDate = moment(event.start).format("MMMM Do YYYY, h:mma");
-
+  let displayDescription = event.description || "No description available";
   return (
     <View style={styles.modalContainer}>
       <TouchableOpacity style={styles.closeButton}
@@ -17,6 +17,7 @@ export default function EventModal({event, setShowModal}) {
       <Text style={styles.textSecondary}>{displayDate}</Text>
       <Text style={styles.modalTitle}>{event.name}</Text>
       <Text style={styles.textSecondary}>{event.current_capacity}/{event.total_capacity} People going</Text>
+      <Text style={globalStyles.textLight}>{displayDescription}</Text>
       <TouchableOpacity style={globalStyles.button}>
         <Text style={globalStyles.buttonText}>Book in</Text>
       </TouchableOpacity>
