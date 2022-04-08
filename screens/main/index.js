@@ -29,7 +29,8 @@ export default function Root() {
 							name={`${icons[route.name]}${
 								focused ? "" : "-outline"
 							}`}
-							size={size}
+							// increase size for Create Icon
+							size={route.name == "Create" ? size + 8 : size }
 							color={color}
 						/>
 					);
