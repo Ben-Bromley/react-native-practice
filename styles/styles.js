@@ -15,13 +15,13 @@ export default StyleSheet.create({
 		marginBottom: 15,
 		marginTop: 15,
 	},
-	// ------- Profile Styles -------- //
 	title: {
 		color: "#eeeeee",
 		fontSize: 30,
 		fontWeight: "bold",
 		marginBottom: 10,
 	},
+	// ------- Profile Styles -------- //
 	textSecondaryLink: {
 		color: "gray",
 		fontSize: 15,

@@ -13,7 +13,7 @@ import Tag from "../../components/tag";
 
 import globalStyles from "../../styles/styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Home({ navigation, route }) {
 	const isFocused = useIsFocused();
@@ -42,13 +42,13 @@ export default function Home({ navigation, route }) {
 		<>
 			<ScrollView style={globalStyles.screenContainer}>
 				{/* TAGS / FILTERS */}
-				<ScrollView horizontal={true}>
+				{/* <ScrollView horizontal={true}>
 					<Tag tag="Tennis" />
 					<Tag tag="Badminton" />
 					<Tag tag="Football" />
 					<Tag tag="Baseball" />
 					<Tag tag="Golf" />
-				</ScrollView>
+				</ScrollView> */}
 				<View>
 					{/* for each event in array, render a card: */}
 					{events.map((event) => (
